@@ -5,5 +5,5 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   // base: "/test/", // <--- 중요: 슬래시 꼭 포함
   plugins: [react()],
-  base: "./",  //  경로설정 
+  // base: "./",  //  경로설정 
 });

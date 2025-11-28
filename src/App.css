@@ -1,0 +1,448 @@
+/* App.css - Light Modern Minimal Todo App */
+@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard-dynamic-subset.min.css");
+
+:root {
+  --bg: #f7f9fc;
+  /* 페이지 배경 (밝은 톤) */
+  --card: #ffffff;
+  /* 카드 배경 */
+  --muted: #7a8894;
+  /* 서브 텍스트 */
+  --accent: #3bbd8f;
+  /* 메인 포인트 - 밝은 민트 */
+  --accent-2: #4ca2ff;
+  /* 보조 포인트 */
+  --glass: rgba(0, 0, 0, 0.04);
+  --radius: 14px;
+  --glass-border: rgba(0, 0, 0, 0.06);
+  --shadow: 0 6px 22px rgba(0, 0, 0, 0.08);
+  --danger: #ff5a5a;
+  --text: #1e293b;
+  --max-width: 920px;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Pretendard Variable", Pretendard, -apple-system, BlinkMacSystemFont, system-ui, Roboto, "Helvetica Neue", "Segoe UI", "Apple SD Gothic Neo", "Noto Sans KR", "Malgun Gothic", "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", sans-serif;
+  transition: 0.3s;
+}
+
+.count {
+  display: none;
+}
+
+.bg {
+  position: absolute;
+  width: 100%;
+  top: 0;
+  left: 0;
+  height: 100%;
+}
+
+video {
+  filter: brightness(0.86) blur(2px);
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 전체 페이지 */
+body {
+  position: relative;
+  margin: 0;
+  height: 100dvh;
+  overflow: hidden;
+  background: linear-gradient(180deg, #f1f5fb 0%, #f7f9fc 60%);
+  color: var(--text);
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 48px 20px;
+  font-family: 'Apple SD Gothic Neo', sans-serif;
+  background: #f5f7fa;
+  color: #333;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+/* 카드 영역 */
+.todo-app {
+  width: 100%;
+  max-width: var(--max-width);
+  background: #ffffffcc;
+  border-radius: var(--radius);
+  padding: 28px;
+  box-shadow: var(--shadow);
+  border: 1px solid var(--glass-border);
+  backdrop-filter: blur(12px) saturate(160%);
+  box-sizing: border-box;
+}
+
+.todo-app h2 {
+  color: #333;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+/* 입력 영역 */
+.todo-input-wrap {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+/* =============================
+      입력 영역 고급 디자인
+============================= */
+
+.todo-input-wrap {
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 10px 14px;
+  border-radius: 14px;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-bottom: 1.4rem;
+
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.todo-input-wrap:focus-within {
+  border-color: #4c7dff;
+  box-shadow: 0 0 0 4px rgba(76, 125, 255, 0.15);
+}
+
+.todo-input-wrap input {
+  flex: 1;
+  border: none;
+  background: none;
+  outline: none;
+  font-size: 1.15rem;
+  color: #111;
+  padding: 6px 4px;
+  font-weight: 500;
+}
+
+.todo-input-wrap input::placeholder {
+  color: #bbb;
+  font-weight: 400;
+}
+
+.todo-input-wrap button {
+  padding: 0.75em 18px;
+  font-size: 14px;
+  font-weight: 600;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+
+  background: linear-gradient(135deg, #6b8dff, #4c7dff);
+  color: white;
+
+  transition: opacity 0.2s ease, transform 0.15s ease, background 0.3s ease;
+}
+
+.todo-input-wrap button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(76, 125, 255, 0.35);
+}
+
+.todo-input-wrap button:active:not(:disabled) {
+  transform: translateY(1px);
+  box-shadow: none;
+}
+
+.todo-input-wrap button:disabled {
+  opacity: 0.45;
+  cursor: default;
+  box-shadow: none;
+}
+
+
+/* 추가 버튼 */
+.btn-add {
+  padding: 10px 14px;
+  border-radius: 10px;
+  border: none;
+  background: linear-gradient(90deg, var(--accent), var(--accent-2));
+  color: #ffffff;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 6px 16px rgba(76, 162, 255, 0.25);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.btn-add:hover {
+  transform: translateY(-1px);
+}
+
+.btn-add:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* 리스트 */
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 8px 0 0 0;
+  display: grid;
+  gap: 10px;
+}
+
+/* 각 아이템 */
+.todo-item {
+  position: relative;
+  min-height: 10px;
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+  padding: 12px 14px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.12s ease, box-shadow 0.12s ease;
+}
+
+.todo-item:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.todo-item .text {
+  flex: 1;
+  height: 100%;
+  color: #232323;
+  align-content: center;
+  font-size: 1.125rem;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: opacity 0.15s ease, color 0.15s ease;
+}
+
+/* 완료된 항목 */
+.todo-item.done {
+  transition: 0.3s;
+  opacity: 0.8;
+  background: #b9b9b970;
+}
+
+.todo-item.done .text {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.todo-edit-input {
+  flex: 1;
+  font-size: 16px;
+  padding: 6px 4px;
+  border-radius: 6px;
+  border: 1px solid #4c7dff;
+  outline: none;
+}
+
+.todo-input-wrap {
+  display: flex;
+  gap: 0.6rem;
+  margin-bottom: 1.4rem;
+  padding: 10px 14px;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.06);
+  transition: border 0.2s ease, box-shadow 0.2s ease;
+}
+
+.todo-input-wrap:focus-within {
+  border-color: #4c7dff;
+  box-shadow: 0 0 0 4px rgba(76, 125, 255, 0.15);
+}
+
+.todo-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.todo-item {
+  display: flex;
+  align-items: center;
+  padding: 10px 12px;
+  margin-bottom: 6px;
+  border-radius: 12px;
+  background: #fefefe;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+  gap: 10px;
+}
+
+.todo-item.done .text {
+  text-decoration: line-through;
+  color: #999;
+}
+
+.todo-item .text strong {
+  font-weight: 700;
+  color: #6b8dff;
+  /* 원하면 색도 변경 가능 */
+}
+
+.drag-handle {
+  cursor: grab;
+  opacity: 0.8;
+  font-size: 20px;
+  user-select: none;
+}
+
+.drag-handle:hover {
+  opacity: 1;
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.todo-edit-input {
+  flex: 1;
+  font-size: 16px;
+  padding: 6px 4px;
+  border-radius: 6px;
+  border: 1px solid #4c7dff;
+  outline: none;
+}
+
+.btn-done {
+  aspect-ratio: 1;
+  font-size: 14px;
+  border-radius: 6px;
+  border: 1px solid #4c7dff;
+  background: #fff;
+  cursor: pointer;
+  color: #4c7dff;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+input,
+button {
+  outline: none;
+  padding: 0.5em 0.8em;
+}
+
+.btn-done.done-btn {
+  background: #4c7dff;
+  color: #fff;
+}
+
+.btn-done {
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.btn-done:hover {
+  opacity: 1;
+  background: #4c7cffdc;
+  color: #fff;
+}
+
+.todo-item:hover .btn-done {
+  opacity: 1;
+}
+
+button:focus,
+button:focus-visible {
+  outline: none;
+}
+
+/* 삭제 버튼 */
+.todo-item:hover .btn-delete {
+  opacity: 1;
+}
+
+.btn-delete {
+  opacity: 0;
+  aspect-ratio: 1;
+  border: 1px solid rgba(255, 90, 90, 0.3);
+  border-radius: 8px;
+  background: rgba(255, 90, 90, 0.05);
+  color: var(--danger);
+  cursor: pointer;
+  transition: transform 0.12s ease, opacity 0.12s ease;
+}
+
+.btn-delete:hover {
+  transform: translateY(-1px);
+  border: 1px solid rgba(255, 90, 90, 0.5);
+}
+
+/* 보조 텍스트 */
+.todo-meta {
+  display: flex;
+  margin-top: 12px;
+  color: var(--muted);
+  font-size: 0.9rem;
+  justify-content: space-between;
+}
+
+.todo-meta>div:first-child {
+  font-weight: 600;
+}
+
+.todo-meta>div:last-child {
+  color: var(--muted);
+}
+
+.drag-handle {
+  cursor: grab;
+  font-size: 18px;
+  margin-right: 10px;
+  color: #999;
+  padding: 0 4px;
+}
+
+.bg-change-btn {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  z-index: 99;
+  padding: 10px 16px;
+  border: none;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  backdrop-filter: blur(4px);
+}
+
+.bg-change-btn:hover {
+  background: rgba(255, 255, 255, 1);
+}
+
+/* 반응형 */
+@media (max-width: 680px) {
+  .todo-app {
+    padding: 20px;
+  }
+
+  .todo-input {
+    padding: 10px 12px;
+  }
+
+  .btn-add {
+    padding: 9px 12px;
+  }
+
+  .todo-item .text {
+    font-size: 1rem;
+  }
+}

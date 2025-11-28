@@ -5,5 +5,5 @@ import react from "@vitejs/plugin-react";
 export default defineConfig({
   // base: "/test/", // <--- 중요: 슬래시 꼭 포함
   plugins: [react()],
-  base: '/React-To-do/',  // ★ GitHub repo 이름 정확히 적기
+  base: './',  // root에 배포할 때는 ./로 설정
 });

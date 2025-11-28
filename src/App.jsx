@@ -240,14 +240,14 @@ export default function App() {
   const [bgIndex, setBgIndex] = useState(0);
 
   const videos = [
-    "src/assets/11.mp4",
-    "src/assets/22.mp4",
-    "src/assets/33.mp4",
-    "src/assets/44.mp4",
-    "src/assets/55.mp4",
-    "src/assets/66.mp4",
-    "src/assets/77.mp4",
-    "src/assets/88.mp4",
+    "/videos/11.mp4",
+    "/videos/22.mp4",
+    "/videos/33.mp4",
+    "/videos/44.mp4",
+    "/videos/55.mp4",
+    "/videos/66.mp4",
+    "/videos/77.mp4",
+    "/videos/88.mp4",
   ];
 
   const changeBackground = () => {
